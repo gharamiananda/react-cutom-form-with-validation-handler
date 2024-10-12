@@ -1,14 +1,18 @@
  
 /* eslint-disable @typescript-eslint/no-unused-vars */
  
-import getReactCustomFormValidationHandler from '../hooks/getReactCustomFormValidationHandler';
+import getReactCustomFormValidationHandler from 'react-custom-form-with-validation-handler';
+// import useForm from '../hooks/useForm';
 import { schema } from './form.constant';
 
 
-const {  useReactCustomFormValidationHandler } = getReactCustomFormValidationHandler();
-
+const {constants,getReactCustomFormValidationHandler:useForm,utils}=getReactCustomFormValidationHandler;
+console.log('getReactCustomFormValidationHandler', getReactCustomFormValidationHandler)
+// console.log('constants,utils', constants,utils)
 function FormOne() {
   
+
+  console.log('constants,utils', constants,utils)
 
   const initialFormValues = {
     userName: "sssss",
@@ -23,7 +27,7 @@ function FormOne() {
   };
 
   const {  render, setRender,formRef,   errorRef, valuesRef,
-   touchedRef, handleChange, handleBlur, handleSubmit ,onFocus} = useReactCustomFormValidationHandler(
+   touchedRef, handleChange, handleBlur, handleSubmit ,onFocus} = useForm(
      {
       initialValues:   initialFormValues,
       onSubmitCallback:  onSubmit,
@@ -31,7 +35,6 @@ function FormOne() {
     }
   );
   const formErrors=errorRef.current;
-
 
   const errorMessageClass='mt-2 text-sm text-red-600 dark:text-red-500';
   const errorLabelClass='block mb-2 text-sm font-medium text-red-700 dark:text-red-500';
@@ -79,7 +82,7 @@ onBlur={handleBlur}
     ref={(element) => formRef.current['age'] = element} 
 
     type="text" id="username-error" className={formErrors?.age?.[0]?.message ? errorInputClass : successInputClass}  placeholder="Bonnie Green" />
-   {formErrors?.age?.[0]?.message && <p className={errorMessageClass}  > {formErrors?.userName?.[0]?.message}</p>}
+   {formErrors?.age?.[0]?.message && <p className={errorMessageClass}  > {formErrors?.age?.[0]?.message}</p>}
   </div>
 
   <div>

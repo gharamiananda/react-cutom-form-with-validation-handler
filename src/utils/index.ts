@@ -1,4 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { rEmail } from "../constants";
+
 // Define common types for validation
 type ValidationResult = {
   isValid: boolean;
@@ -70,6 +73,110 @@ export class Validator {
     );
     return validator;
   }
+
+
+
+  // Static method to create driving license validator
+  static drivingLicense(ref?: any): Validator {
+    const validator = new Validator();
+    validator.addValidation(
+      (value) => /^[A-Z]{2}\d{2}[A-Z]\d{7}$/.test(value), // Format may vary by state
+      'Value must be a valid Indian driving license number',
+      ref
+    );
+    return validator;
+  }
+
+  // Static method to create voter card validator
+  static indianVoterCard(ref?: any): Validator {
+    const validator = new Validator();
+    validator.addValidation(
+      (value) => /^[A-Z]{3}\d{7}$/.test(value),
+      'Value must be a valid Indian voter ID number',
+      ref
+    );
+    return validator;
+  }
+
+  // Static method to create passport number validator
+  static indianPassport(ref?: any): Validator {
+    const validator = new Validator();
+    validator.addValidation(
+      (value) => /^[A-Z]{1}[0-9]{7}$/.test(value),
+      'Value must be a valid Indian passport number',
+      ref
+    );
+    return validator;
+  }
+
+
+
+  // Static method to create Aadhaar card validator
+  static indianAadhaarCard(ref?: any): Validator {
+    const validator = new Validator();
+    validator.addValidation(
+      (value) => /^\d{12}$/.test(value),
+      'Value must be a valid 12-digit Aadhaar number',
+      ref
+    );
+    return validator;
+  }
+
+   // Static method to create email validator
+   static email(ref?: any): Validator {
+    const validator = new Validator();
+    validator.addValidation(
+      (value) => rEmail.test(value),
+      'Value must be a valid email address',
+      ref
+    );
+    return validator;
+  }
+     // Static method to create Indian PAN card validator
+  static indianPanCard(ref?: any): Validator {
+    const validator = new Validator();
+    validator.addValidation(
+      (value) => /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(value),
+      'Value must be a valid Indian PAN card',
+      ref
+    );
+    return validator;
+  }
+
+    // Static method to create Indian bank account number validator
+    static indianBankAccountNumber(ref?: any): Validator {
+      const validator = new Validator();
+      validator.addValidation(
+        (value) => /^\d{9,18}$/.test(value),
+        'Value must be a valid Indian bank account number (9 to 18 digits)',
+        ref
+      );
+      return validator;
+    }
+    // Static method to create IFSC code validator
+    static indianIFSCCode(ref?: any): Validator {
+      const validator = new Validator();
+      validator.addValidation(
+        (value) => /^[A-Z]{4}0[A-Z0-9]{6}$/.test(value),
+        'Value must be a valid IFSC code',
+        ref
+      );
+      return validator;
+    }
+   // Static method to create date validator
+   static dateValid(ref?: any): Validator {
+    const validator = new Validator();
+    validator.addValidation(
+      (value) => {
+        const date = new Date(value);
+        return !isNaN(date.getTime());
+      },
+      'Value must be a valid date',
+      ref
+    );
+    return validator;
+  }
+
 
   // Static method to create string validator
   static string(ref?: any): Validator {

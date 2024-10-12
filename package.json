@@ -13,7 +13,7 @@
     "i": "^0.3.7",
     "npm": "^10.9.0",
     "react": "^18.3.1",
-    "react-custom-form-with-validation-handler": "^1.0.2",
+    "react-custom-form-with-validation-handler": "^1.0.13",
     "react-cutom-form-with-validation-handler": "^1.0.1",
     "react-dom": "^18.3.1"
   },

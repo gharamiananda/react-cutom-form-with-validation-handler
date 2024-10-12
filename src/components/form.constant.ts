@@ -1,20 +1,22 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { constants, utils } from "../hooks/getReactCustomFormValidationHandler";
 
-import getReactCustomFormValidationHandler from '../hooks/getReactCustomFormValidationHandler';
-const { utilitiesMethods } = getReactCustomFormValidationHandler();
+const {Validator,safeString}= utils;
+const {rEmail}= constants;
 
 export const schema={ 
-  userName: utilitiesMethods .Validator.string().required().minLength(3).maxLength(8),
-  aggrredTerms: utilitiesMethods.Validator.boolean({dependency:['mobile']}),
+  userName:  Validator.string().required().minLength(3).maxLength(8),
+  aggrredTerms: Validator.boolean({dependency:['mobile']}),
+  age: Validator.number(),
 
-  email: utilitiesMethods.Validator.string().required().test(
+  email: Validator.string().required().test(
     (value: string, values: Record<string, any> | undefined) => {
-     return  !!utilitiesMethods.safeString( value).match(utilitiesMethods.rEmail) },
+     return  !!safeString( value).match(rEmail) },
     'Invalid email address'
   ),
-  mobile : utilitiesMethods.Validator.number().test(
+  mobile : Validator.number().test(
     (value: string, values: Record<string, any> | undefined) => {
 
 if(values?.aggrredTerms===true){
