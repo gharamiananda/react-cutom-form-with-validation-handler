@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Define common types for validation
 type ValidationResult = {
   isValid: boolean;
@@ -190,7 +191,7 @@ export class Schema {
     const errors: Record<string, any> = {};
     const sanitizedValues: Record<string, any> = {};
 
-    for (let key in this.fields) {
+    for (const key in this.fields) {
       const validator = this.fields[key];
 
       // Handle arrays of objects

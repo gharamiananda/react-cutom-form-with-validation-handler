@@ -2,21 +2,18 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
  
 import './App.css';
-import { rEmail } from './constants';
-import useForm from './hooks/useForm';
-import { safeString, Validator } from './utils';
-
+import useForm, { utiltiMethods } from './hooks/useForm';
 
 const schema={ 
-  userName: Validator.string().required().minLength(3).maxLength(8),
-  aggrredTerms: Validator.boolean({dependency:['mobile']}),
+  userName: utiltiMethods.Validator.string().required().minLength(3).maxLength(8),
+  aggrredTerms: utiltiMethods.Validator.boolean({dependency:['mobile']}),
 
-  email: Validator.string().required().test(
+  email: utiltiMethods.Validator.string().required().test(
     (value: string, values: Record<string, any> | undefined) => {
-     return  !!safeString( value).match(rEmail) },
+     return  !!utiltiMethods.safeString( value).match(utiltiMethods.rEmail) },
     'Invalid email address'
   ),
-  mobile : Validator.number().test(
+  mobile : utiltiMethods.Validator.number().test(
     (value: string, values: Record<string, any> | undefined) => {
 
 if(values?.aggrredTerms===true){
