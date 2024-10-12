@@ -2,8 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import { rEmail, rUrl, rUUID } from '../constants';
-import { createSchemaFromObject, createSchemaFromSingleObject, safeString, Schema, ValidationService, Validator } from "../utils";
+import { createSchemaFromObject, safeString, Schema, ValidationService } from "../utils";
 
 // Define types for form values, options, and validation schema
 interface ValidationSchema {
@@ -129,7 +128,6 @@ function useForm({ initialValues = {}, onSubmitCallback = () => {}, options = {}
         processedValue = (e.target as HTMLInputElement).checked;
         if (formRef.current[name]) {
           formRef.current[name].checked = processedValue; // Use non-null assertion after the check
-          console.log('processedValue', formRef.current[name].checked)
 
 
           valuesRef.current[name] = processedValue;
@@ -247,15 +245,4 @@ function useForm({ initialValues = {}, onSubmitCallback = () => {}, options = {}
 
 
 export default useForm;
-
-export const utiltiMethods={
-  safeString, Validator,
-  rEmail,
-  rUrl,
-  rUUID,
-  Schema,
-  ValidationService,
-  createSchemaFromObject,
-  createSchemaFromSingleObject
-}
 
