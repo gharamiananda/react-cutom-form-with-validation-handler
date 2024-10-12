@@ -1,4 +1,6 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+ 
 import './App.css';
 import { rEmail } from './constants';
 import useForm from './hooks/useForm';
