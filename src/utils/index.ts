@@ -169,9 +169,10 @@ export class Validator {
     validator.addValidation(
       (value) => {
         const date = new Date(value);
-        return !isNaN(date.getTime());
+        // Check if date is valid and within a reasonable range
+        return !isNaN(date.getTime()) && date.getFullYear() >= 1900 && date <= new Date();
       },
-      'Value must be a valid date',
+      'Value must be a valid date (after 1900 and not in the future)',
       ref
     );
     return validator;

@@ -19,7 +19,8 @@ function FormOne() {
     email: "testmail",
     mobile:'9',
     age:10,
-    aggrredTerms:false
+    aggrredTerms:false,
+    dob:null
   };
 
   const onSubmit = (formValues:Record<string,unknown>) => {
@@ -116,6 +117,23 @@ onBlur={handleBlur}
     type="text" id="username-error" className={formErrors?.mobile?.[0]?.message ? errorInputClass : successInputClass}  placeholder="Bonnie Green" />
    {formErrors?.mobile?.[0]?.message && <p className={errorMessageClass}  > {formErrors?.mobile?.[0]?.message}</p>}
   </div>
+
+
+<div className="relative max-w-sm my-5">
+<label  className={formErrors?.dob?.[0]?.message ? errorLabelClass : successLabelClass}>Your Date of birth</label>
+
+  <input 
+    onFocus={onFocus}
+    name='dob'
+    
+    onChange={e=>handleChange(e,{LOWERCASE:true,MAXLENGTH:10,NOSPACIALCHARATERALLOW:true,ONLYNUMBERALLOW:true})}
+    onBlur={handleBlur}
+        // ref={(element) => formRef.current['email'] = element} 
+        ref={(element) => formRef.current['dob'] = element} 
+  
+  id="default-datepicker" type="date" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" />
+   {formErrors?.dob?.[0]?.message && <p className={errorMessageClass}  > {formErrors?.dob?.[0]?.message}</p>}
+</div>
  
   <div className="flex items-start mb-5">
     <div className="flex items-center h-5">
@@ -129,6 +147,11 @@ onBlur={handleBlur}
     </div>
     <label htmlFor="terms" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <a href="#" className="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a></label>
   </div>
+
+
+
+
+
   
   <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register new account</button>
   <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={()=>{

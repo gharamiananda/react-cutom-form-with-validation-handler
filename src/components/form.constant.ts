@@ -3,6 +3,10 @@
 
 import { constants, utils } from "../hooks/getReactCustomFormValidationHandler";
 
+// import getReactCustomFormValidationHandler from 'react-custom-form-with-validation-handler';
+
+// const {constants,getReactCustomFormValidationHandler:useForm,utils}=getReactCustomFormValidationHandler;
+
 const {Validator,safeString}= utils;
 const {rEmail}= constants;
 
@@ -10,6 +14,7 @@ export const schema={
   userName:  Validator.string().required().minLength(3).maxLength(8),
   aggrredTerms: Validator.boolean({dependency:['mobile']}),
   age: Validator.number(),
+  dob:Validator.dateValid().required(),
 
   email: Validator.string().required().test(
     (value: string, values: Record<string, any> | undefined) => {
